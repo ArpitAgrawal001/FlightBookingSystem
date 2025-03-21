@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Tickets</title>
+    <style>
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h2 style="text-align: center;">All Tickets</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Ticket ID</th>
+        <th>Flight ID</th>
+        <th>Passenger Name</th>
+        <th>Email</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ticket : ${tickets}">
+        <td th:text="${ticket.id}"></td>
+        <td th:text="${ticket.flightId}"></td>
+        <td th:text="${ticket.passengerName}"></td>
+        <td th:text="${ticket.email}"></td>
+        <td th:text="${ticket.status}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
