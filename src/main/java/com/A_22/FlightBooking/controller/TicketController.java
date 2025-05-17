@@ -55,4 +55,22 @@ public class TicketController {
             return ResponseEntity.status(404).body("Ticket with ID " + id + " not found.");
         }
     }
+
+    @PutMapping("/{id}")
+        public ResponseEntity<?> updateTicket(@PathVariable String id, @RequestBody Ticket ticket) {
+            Optional<Ticket> existingTicket = ticketService.getTicketById(id);
+            if (existingTicket.isPresent()) {
+                Ticket t = existingTicket.get();
+                // Update fields from incoming ticket
+                t.setFlightId(ticket.getFlightId());
+                t.setPassengerName(ticket.getPassengerName());
+                t.setEmail(ticket.getEmail());
+                t.setStatus(ticket.getStatus());
+                Ticket updatedTicket = ticketService.updateTicket(t);  // You'll implement this service method
+                return ResponseEntity.ok(updatedTicket);
+            } else {
+                return ResponseEntity.status(404).body("Ticket not found");
+            }
+        }
+
 }

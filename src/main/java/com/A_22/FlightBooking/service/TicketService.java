@@ -38,4 +38,19 @@ public class TicketService {
         }
         return false;  // Return false if ticket is not found
     }
+
+    public Ticket updateTicket(Ticket updatedTicket) {
+        Optional<Ticket> existingTicketOpt = getTicketById(updatedTicket.getId());
+        if (existingTicketOpt.isPresent()) {
+            Ticket existingTicket = existingTicketOpt.get();
+            // Update fields
+            existingTicket.setFlightId(updatedTicket.getFlightId());
+            existingTicket.setPassengerName(updatedTicket.getPassengerName());
+            existingTicket.setEmail(updatedTicket.getEmail());
+            existingTicket.setStatus(updatedTicket.getStatus());
+            return existingTicket;
+        }
+        // Optional: throw exception or return null if not found
+        return null;
+    }
 }
